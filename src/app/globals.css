@@ -1,0 +1,196 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Брендовые цвета — напрямую литералами, чтобы утилиты работали гарантированно */
+@theme {
+  --color-emerald-deep: #0a1f17;
+  --color-emerald-mid: #0f2a1f;
+  --color-emerald-soft: #143226;
+  --color-gold: #c9a86a;
+  --color-gold-soft: #d8be86;
+  --color-gold-bright: #e6d2a3;
+  --color-bronze: #8a6f3e;
+  --color-bronze-dark: #6b5530;
+  --color-cream: #f3ecda;
+  --color-cream-warm: #ece1c6;
+  --color-cream-dim: #d8d0bd;
+
+  --font-playfair: var(--font-playfair), serif;
+  --font-cormorant: var(--font-cormorant), serif;
+  --font-ptserif: var(--font-ptserif), serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.25rem;
+
+  --background: #0a1f17;
+  --foreground: #f3ecda;
+  --card: #0f2a1f;
+  --card-foreground: #f3ecda;
+  --popover: #0f2a1f;
+  --popover-foreground: #f3ecda;
+  --primary: #c9a86a;
+  --primary-foreground: #0a1f17;
+  --secondary: #143226;
+  --secondary-foreground: #f3ecda;
+  --muted: #143226;
+  --muted-foreground: #c9bfa6;
+  --accent: #c9a86a;
+  --accent-foreground: #0a1f17;
+  --destructive: #b8453a;
+  --border: rgba(201, 168, 106, 0.22);
+  --input: rgba(201, 168, 106, 0.18);
+  --ring: #c9a86a;
+  --chart-1: #c9a86a;
+  --chart-2: #d8be86;
+  --chart-3: #8aa882;
+  --chart-4: #e0cb9c;
+  --chart-5: #6f8f6a;
+  --sidebar: #0f2a1f;
+  --sidebar-foreground: #f3ecda;
+  --sidebar-primary: #c9a86a;
+  --sidebar-primary-foreground: #0a1f17;
+  --sidebar-accent: #143226;
+  --sidebar-accent-foreground: #f3ecda;
+  --sidebar-border: rgba(201, 168, 106, 0.22);
+  --sidebar-ring: #c9a86a;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+  ::selection {
+    background: rgba(201, 168, 106, 0.3);
+    color: #f3ecda;
+  }
+}
+
+/* Кастомный скроллбар в зелёно-золотой гамме */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1f17;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#c9a86a, #8a6f3e);
+  border-radius: 6px;
+  border: 2px solid #0a1f17;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d8be86;
+}
+
+/* Утилиты типографики */
+.font-display {
+  font-family: var(--font-playfair), serif;
+}
+.font-cormorant {
+  font-family: var(--font-cormorant), serif;
+}
+.font-body {
+  font-family: var(--font-ptserif), serif;
+}
+
+/* Золотой градиентный текст */
+.text-gold-gradient {
+  background: linear-gradient(180deg, #e6d2a3 0%, #c9a86a 45%, #9c7d44 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Декоративный угловой орнамент */
+.ornate-corners {
+  position: relative;
+}
+.ornate-corners::before,
+.ornate-corners::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--color-gold);
+  pointer-events: none;
+  z-index: 5;
+}
+.ornate-corners::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+.ornate-corners::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+/* Лёгкая зернистая текстура */
+.texture-overlay {
+  background-image: radial-gradient(rgba(201, 168, 106, 0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+.text-shadow-soft {
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Скрытый скроллбар для горизонтальных каруселей */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
